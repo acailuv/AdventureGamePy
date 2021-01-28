@@ -7,7 +7,7 @@ from Item import Item
 from HealingItem import HealingItem
 from SupportItem import SupportItem
 
-sys.path.insert(0, '../')
+sys.path.insert(0, '../Player')
 
 from Player import Player
 
