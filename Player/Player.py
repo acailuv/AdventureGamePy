@@ -15,5 +15,9 @@ class Player:
         self.attack = 1
         self.defense = 1
 
-        # Make better inventory system
+        # Inventory
         self.inventory = Inventory()
+
+        # Equipment slots
+        self.armor = None
+        self.weapon = None
