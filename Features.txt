@@ -1,0 +1,14 @@
+Player: HP, MP, Attack, Defense, Inventory, Currency
+
+Monster: HP, Attack, Defense, Loot
+
+Items:
+    Healing, Support
+    Equipment: Weapon, Armor
+
+Combat:
+    Battle System:
+        Enemy: Normal, Boss
+        Skill: Normal, Ultimate
+
+Location: Shop, Inn, Dungeon
