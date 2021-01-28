@@ -1,3 +1,8 @@
+import sys
+sys.path.insert(0, '../Inventory')
+
+from Inventory import Inventory
+
 class Player:
 
     def __init__(self, name):
@@ -11,4 +16,4 @@ class Player:
         self.defense = 1
 
         # Make better inventory system
-        self.inventory = []
+        self.inventory = Inventory()
