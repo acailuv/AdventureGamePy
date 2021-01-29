@@ -17,3 +17,13 @@ def test_item_inventory():
     assert player.inventory.items[item.name][0].name == "DUMMY_ITEM"
     assert player.inventory.items[item.name][0].desc == "DUMMY_DESC"
     assert player.inventory.items[item.name][1] == 1
+
+    player.inventory.remove_item(item)
+    assert player.inventory.items[item.name][1] == 0
+
+    try:
+        # No item in the inventory to remove
+        player.inventory.remove_item(Item("A", "B"))
+        assert False
+    except:
+        assert True

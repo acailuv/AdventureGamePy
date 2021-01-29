@@ -16,5 +16,5 @@ class Monster:
         self.hp = self.hp - damage
 
     def heal(self, healing):
-        self.hp = max(self.max_hp, self.hp + healing)
+        self.hp = min(self.max_hp, self.hp + healing)
     
