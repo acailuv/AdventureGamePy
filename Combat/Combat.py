@@ -18,7 +18,7 @@ class Combat:
                     action = input().lower().strip()
 
                 if action == self.valid_actions[0]:
-                    print("Remaining enemies:")
+                    print("\nRemaining enemies:")
                     for i in range(len(self.enemies)):
                         print("{}. {}".format(i+1, self.enemies[i].name))
                     
@@ -32,10 +32,10 @@ class Combat:
                     # Convert starting target from 1 to 0 for list lookup
                     target = target - 1
 
-                    # Temporary damage calculation: max(player attack - enemy defence, 1)
-                    damage_dealt = max(self.player.attack - self.enemies[target].defence, 1)
+                    # Temporary damage calculation: max(player attack - enemy defense, 1)
+                    damage_dealt = max(self.player.attack - self.enemies[target].defense, 1)
                     self.enemies[target].damage(damage_dealt)
-                    print("You dealt {} damage to {}".format(damage_dealt, self.enemies[target].name))
+                    print("\nYou dealt {} damage to {}".format(damage_dealt, self.enemies[target].name))
                     if self.enemies[target].hp <= 0:
                         print("{} has been defeated!".format(self.enemies[target].name))
                         del self.enemies[target] # Enemy died, remove from list
@@ -47,8 +47,21 @@ class Combat:
                 elif action == self.valid_actions[3]:
                     print("TODO: Implement Inventory")
             else: # Odd turns are enemy turns
-                print("TODO: Implement enemy attacks")
+                for enemy in self.enemies:
+                    # Temporary damage calculation: max(enemy attack - player defense, 1)
+                    damage_dealt = max(enemy.attack - self.player.defense, 1)
+                    # Player has no take damage function (yet?)
+                    self.player.hp = max(0, self.player.hp - damage_dealt)
+                    print("{} dealt {} damage to you!".format(enemy.name, damage_dealt))
+                    if self.player.hp <= 0: break
+                    
             turn += 1
+
+        if self.player.hp <= 0:
+            print("Defeat...")
+        else:
+            print("You are victorious!")
+            # Give out Experience/Money/Loot
         
     def check_finished(self):
         # Returns true if player or all enemies health <= 0
@@ -56,7 +69,7 @@ class Combat:
 
         # for enemy in self.enemies:
         #     print(enemy.name, enemy.hp)
-        
+
         for enemy in self.enemies:
             if enemy.hp > 0:
                 return False # one of the enemies are still alive
@@ -69,5 +82,6 @@ class Combat:
             return False
     
     def print_valid_actions(self):
-        print("What will you do?")
+        print("\nWhat will you do?")
+        print("Your health: {}/{}".format(self.player.hp, self.player.max_hp))
         print("Valid actions: {}".format(', '.join(self.valid_actions)))
