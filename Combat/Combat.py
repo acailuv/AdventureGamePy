@@ -6,7 +6,7 @@ class Combat:
         # [enemy1, enemy2, ...]
         self.enemies = enemies
 
-        self.valid_actions = ["attack", "defend", "skill", "inventory"]
+        self.valid_actions = ["attack", "skill", "inventory", "escape"]
 
     def begin_combat(self):
         turn = 0
@@ -41,11 +41,12 @@ class Combat:
                         del self.enemies[target] # Enemy died, remove from list
                     
                 elif action == self.valid_actions[1]:
-                    print("TODO: Implement defend")
-                elif action == self.valid_actions[2]:
                     print("TODO: Implement skills")
-                elif action == self.valid_actions[3]:
+                elif action == self.valid_actions[2]:
                     print("TODO: Implement Inventory")
+                elif action == self.valid_actions[3]:
+                    break
+                
             else: # Odd turns are enemy turns
                 for enemy in self.enemies:
                     # Temporary damage calculation: max(enemy attack - player defense, 1)
@@ -59,6 +60,8 @@ class Combat:
 
         if self.player.hp <= 0:
             print("Defeat...")
+        elif not self.check_finished():
+            print("You ran away...")
         else:
             print("You are victorious!")
             # Give out Experience/Money/Loot
