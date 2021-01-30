@@ -11,7 +11,7 @@ from Weapon import Weapon
 
 from collections import defaultdict
 
-player = Player("Player")
+player = Player("DUMMY")
 
 effects = defaultdict(int)
 effects["max_hp"] = 1

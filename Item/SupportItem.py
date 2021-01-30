@@ -2,8 +2,8 @@ from Item import Item
 
 class SupportItem(Item):
 
-    def __init__(self, name, desc, support_type, amount, turns):
-        super().__init__(name, desc)
+    def __init__(self, name, desc, price, support_type, amount, turns):
+        super().__init__(name, desc, price)
         self.support_type = support_type
         self.amount = amount
         self.turns = turns

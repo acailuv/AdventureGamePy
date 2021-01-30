@@ -29,8 +29,10 @@ class Player:
         # Location
         self.location = None
     
-    def sufficient_funds(self, amount):
+    def sufficient_funds(self, amount, print_notification=True):
         if self.gold >= amount:
             return True
         else:
+            if (print_notification):
+                print("Insufficient Funds")
             return False
