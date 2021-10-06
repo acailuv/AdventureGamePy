@@ -28,7 +28,7 @@ class Inventory:
 
     def remove_item(self, item, amount=1):
         if not self.item_exist(item):
-            raise Exception("There is not any", item.name, "in the inventory to remove.")
+            raise Exception('There is not any', item.name, 'in the inventory to remove.')
         else:
             if self.item_sufficient(item, amount):
                 self.items[item.name][1] -= amount

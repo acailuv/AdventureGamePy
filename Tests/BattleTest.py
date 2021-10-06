@@ -7,10 +7,10 @@ from Combat import Combat
 from Monster import Monster
 from Player import Player
 
-Character = Player("Adventurer")
-GoblinA = Monster("GoblinA", 5, 5, 1, 0, [], {})
-GoblinB = Monster("GoblinB", 5, 5, 1, 0, [], {})
-GoblinC = Monster("GoblinC", 5, 5, 1, 0, [], {})
+Character = Player('Adventurer')
+GoblinA = Monster('GoblinA', 5, 5, 1, 0, [], {})
+GoblinB = Monster('GoblinB', 5, 5, 1, 0, [], {})
+GoblinC = Monster('GoblinC', 5, 5, 1, 0, [], {})
 Monsters = [GoblinA, GoblinB, GoblinC]
 
 Battle = Combat(Character, Monsters)

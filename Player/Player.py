@@ -1,7 +1,7 @@
 import sys
 sys.path.insert(0, '../Inventory')
 
-from Inventory import Inventory
+from Inventory import Inventory # pylint: disable=import-error
 
 class Player:
 
@@ -34,5 +34,5 @@ class Player:
             return True
         else:
             if (print_notification):
-                print("Insufficient Funds")
+                print('Insufficient Funds')
             return False

@@ -1,3 +1,7 @@
+import sys
+sys.path.insert(0, '../Utils')
+
+from Utils import Constants # pylint: disable=import-error
 from Item import Item
 
 class SupportItem(Item):
@@ -14,21 +18,21 @@ class SupportItem(Item):
         return new_max_value, delta
 
     def use(self, target):
-        if self.support_type == "max_hp":
+        if self.support_type == Constants.Statuses.MAX_HP:
             new_max_hp, delta = self.calculate_max_delta(target.max_hp)
             target.max_hp = new_max_hp
             target.hp += delta
 
-        elif self.support_type == "max_mp":
+        elif self.support_type == Constants.Statuses.MAX_MP:
             new_max_mp, delta = self.calculate_max_delta(target.max_mp)
             target.max_mp = new_max_mp
             target.mp += delta
 
-        elif self.support_type == "attack":
+        elif self.support_type == Constants.Statuses.ATTACK:
             target.attack += self.amount
 
-        elif self.support_type == "defense":
+        elif self.support_type == Constants.Statuses.DEFENSE:
             target.defense += self.amount
 
         else:
-            Exception("Support type is invalid.")
+            Exception('Support type is invalid.')

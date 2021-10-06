@@ -11,7 +11,7 @@ class Shop(Location):
 
     def buy(self, target, item, amount=1):
         if item.name not in self.catalog:
-            raise Exception("Item:", item.name, "is not registered at this shop")
+            raise Exception('Item:', item.name, 'is not registered at this shop')
         else:
             if target.sufficient_funds(self.catalog[item.name][1] * amount):
                 target.inventory.add_item(item, amount)
@@ -19,8 +19,8 @@ class Shop(Location):
     
     def sell(self, target, item, amount=1):
         if not target.inventory.item_sufficient(item, amount):
-            raise Exception("Item does not exist in player inventory: ", item.name)
+            raise Exception('Item does not exist in player inventory: ', item.name)
         else:
             target.inventory.remove_item(item, amount)
             target.gold += item.price * amount
-            print("Item:", item.name, "is sold for:", item.price * amount, "gold pieces")
+            print('Item:', item.name, 'is sold for:', item.price * amount, 'gold pieces')

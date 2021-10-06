@@ -6,7 +6,7 @@ class Combat:
         # [enemy1, enemy2, ...]
         self.enemies = enemies
 
-        self.valid_actions = ["attack", "skill", "inventory", "escape"]
+        self.valid_actions = ['attack', 'skill', 'inventory', 'escape']
 
     def begin_combat(self):
         turn = 0
@@ -18,13 +18,13 @@ class Combat:
                     action = input().lower().strip()
 
                 if action == self.valid_actions[0]:
-                    print("\nRemaining enemies:")
+                    print('\nRemaining enemies:')
                     for i in range(len(self.enemies)):
-                        print("{}. {}".format(i+1, self.enemies[i].name))
+                        print('{}. {}'.format(i+1, self.enemies[i].name))
                     
                     target = 0
                     while not 1 <= target <= len(self.enemies):
-                        target = input("Select target: ")
+                        target = input('Select target: ')
                         if not target.isdigit():
                             target = 0
                         else:
@@ -35,15 +35,15 @@ class Combat:
                     # Temporary damage calculation: max(player attack - enemy defense, 1)
                     damage_dealt = max(self.player.attack - self.enemies[target].defense, 1)
                     self.enemies[target].damage(damage_dealt)
-                    print("\nYou dealt {} damage to {}".format(damage_dealt, self.enemies[target].name))
+                    print('\nYou dealt {} damage to {}'.format(damage_dealt, self.enemies[target].name))
                     if self.enemies[target].hp <= 0:
-                        print("{} has been defeated!".format(self.enemies[target].name))
+                        print('{} has been defeated!'.format(self.enemies[target].name))
                         del self.enemies[target] # Enemy died, remove from list
                     
                 elif action == self.valid_actions[1]:
-                    print("TODO: Implement skills")
+                    print('TODO: Implement skills')
                 elif action == self.valid_actions[2]:
-                    print("TODO: Implement Inventory")
+                    print('TODO: Implement Inventory')
                 elif action == self.valid_actions[3]:
                     break
                 
@@ -53,17 +53,17 @@ class Combat:
                     damage_dealt = max(enemy.attack - self.player.defense, 1)
                     # Player has no take damage function (yet?)
                     self.player.hp = max(0, self.player.hp - damage_dealt)
-                    print("{} dealt {} damage to you!".format(enemy.name, damage_dealt))
+                    print('{} dealt {} damage to you!'.format(enemy.name, damage_dealt))
                     if self.player.hp <= 0: break
                     
             turn += 1
 
         if self.player.hp <= 0:
-            print("Defeat...")
+            print('Defeat...')
         elif not self.check_finished():
-            print("You ran away...")
+            print('You ran away...')
         else:
-            print("You are victorious!")
+            print('You are victorious!')
             # Give out Experience/Money/Loot
         
     def check_finished(self):
@@ -85,6 +85,6 @@ class Combat:
             return False
     
     def print_valid_actions(self):
-        print("\nWhat will you do?")
-        print("Your health: {}/{}".format(self.player.hp, self.player.max_hp))
-        print("Valid actions: {}".format(', '.join(self.valid_actions)))
+        print('\nWhat will you do?')
+        print('Your health: {}/{}'.format(self.player.hp, self.player.max_hp))
+        print('Valid actions: {}'.format(', '.join(self.valid_actions)))
